@@ -1,9 +1,10 @@
 import "reflect-metadata";
 import { GraphQLServer } from "graphql-yoga";
+import { createConnection } from "typeorm";
+
 import { default as resolvers } from "./resolvers";
 import { default as typeDefs } from "./typeDefs";
-import { createConnection } from "typeorm";
-const options = { port: 4004 };
+import { options } from "./config/constants";
 
 const server = new GraphQLServer({ typeDefs, resolvers });
 

@@ -1,6 +1,8 @@
 import { IResolvers } from "graphql-tools";
 import * as bcryptjs from "bcryptjs";
+
 import { User } from "../entity/User";
+
 const userResolvers: IResolvers = {
   Query: {
     hello: (_, { name }: GQL.IHelloOnQueryArguments) =>
