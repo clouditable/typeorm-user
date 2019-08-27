@@ -1,8 +1,15 @@
+/* tslint:disable:no-unused-variable */
+
 import { request } from "graphql-request";
-import { createConnection } from "typeorm";
+
+import { startServer } from "../../startServer";
 
 import { User } from "../../entity/User";
 import { host } from "../../config/constants";
+
+beforeAll(async () => {
+  await startServer();
+});
 
 const email = "email@gmail.com";
 const password = "123456";
@@ -16,7 +23,6 @@ const mutation = `
 test("Register user", async () => {
   const response = await request(host, mutation);
   expect(response).toEqual({ register: true });
-  await createConnection();
   const users = await User.find({ where: { email } });
   expect(users).toHaveLength(1);
   const user = users[0];
