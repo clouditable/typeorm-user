@@ -13,13 +13,25 @@ const userResolvers: IResolvers = {
       _,
       { email, password }: GQL.IRegisterOnMutationArguments
     ) => {
+      const userAlreadyExists = await User.findOne({
+        where: { email },
+        select: ["id"]
+      });
+      if (userAlreadyExists) {
+        return [
+          {
+            path: "email",
+            message: "already taken"
+          }
+        ];
+      }
       const hashedPass = await bcryptjs.hash(password, 10);
       const user = User.create({
         email,
         password: hashedPass
       });
       await user.save();
-      return true;
+      return null;
     }
   }
 };

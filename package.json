@@ -25,13 +25,12 @@
     "merge-graphql-schemas": "^1.7.0",
     "pg": "^7.12.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "0.2.18",
-    "uuid": "^3.3.3"
+    "typeorm": "0.2.18"
   },
   "scripts": {
     "start": "ts-node --files  src/index.ts",
     "dev": "NODE_ENV=development nodemon --exec ts-node --files src/index.ts",
-    "test": "NODE_ENV=test jest",
+    "test": "NODE_ENV=test jest --forceExit",
     "gen-schema-types": "gql2ts src/typeDefs/*.graphql -o src/types/schema.d.ts"
   }
 }
